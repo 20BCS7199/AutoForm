@@ -4,8 +4,9 @@ The web-app allows user to fill the form using speech to text feature.
 - Submit the form and send the data to the backend server.
 - Saves to the database (.json file)
 
-Frontend - React, JavaScript, BootstrapCSS
-Backend - Node, Express
+Teck Stack used:
+- Frontend - React, JavaScript, BootstrapCSS
+- Backend - Node, Express
 
 Screenshots:
 
