@@ -9,7 +9,7 @@ Teck Stack used:
 - Backend - Node, Express
 
 Steps to execute:
-"npm i" for all both the directories
+- "npm i" for all both the directories
 - Fronted: npm run dev
 - Backend: node server.js
 
