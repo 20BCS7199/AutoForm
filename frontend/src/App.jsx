@@ -1,7 +1,10 @@
+// Importing the necessary styles and React dependencies
 import "./App.css";
 import React, { useState } from "react";
 
+// Main functional component for the application
 function App() {
+  // State to manage form data and submission status
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,6 +19,7 @@ function App() {
     isSuccess: false,
   });
 
+  // Function to start speech recognition for a given input field
   const startSpeechRecognition = (targetInputId) => {
     const recognition =
       new window.webkitSpeechRecognition() || window.SpeechRecognition();
@@ -23,6 +27,7 @@ function App() {
     recognition.start();
 
     recognition.onresult = (event) => {
+      // Update form data with the recognized speech result
       const result = event.results[0][0].transcript;
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -39,6 +44,7 @@ function App() {
     };
   };
 
+  // Handler for input changes in the form
   const handleChange = (event) => {
     const { id, value } = event.target;
     setFormData((prevFormData) => ({
@@ -47,10 +53,12 @@ function App() {
     }));
   };
 
+  // Handler for form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
+      // Submit form data to the server using a POST request
       const response = await fetch("http://localhost:3001/submitFormData", {
         method: "POST",
         headers: {
@@ -59,6 +67,7 @@ function App() {
         body: JSON.stringify(formData),
       });
 
+      // Check the response status and update submission status
       if (response.ok) {
         console.log("Form data submitted successfully");
         setSubmitStatus({ isSubmitted: true, isSuccess: true });
@@ -76,6 +85,7 @@ function App() {
     }
   };
 
+  // Render the form with input fields and buttons
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -252,4 +262,5 @@ function App() {
   );
 }
 
+// Exporting the App component as the default export
 export default App;
